@@ -4,13 +4,17 @@ loadEnv();
 
 export const POST_LIMIT = 280;
 
+function envValue(name) {
+  return process.env[name]?.trim();
+}
+
 export const config = {
   dryRun: process.argv.includes("--dry-run") || process.env.DRY_RUN === "true",
   fromPreview: process.argv.includes("--from-preview"),
   buffer: {
-    apiKey: process.env.BUFFER_API_KEY,
-    channelId: process.env.BUFFER_CHANNEL_ID,
-    publicImageBaseUrl: process.env.BUFFER_PUBLIC_IMAGE_BASE_URL
+    apiKey: envValue("BUFFER_API_KEY"),
+    channelId: envValue("BUFFER_CHANNEL_ID"),
+    publicImageBaseUrl: envValue("BUFFER_PUBLIC_IMAGE_BASE_URL")
   },
   images: {
     enableFreeAi: process.env.ENABLE_FREE_AI_IMAGES !== "false",

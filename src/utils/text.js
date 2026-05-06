@@ -42,3 +42,11 @@ export function splitThread(text, maxParts = 4) {
 export function enforcePostLimit(post) {
   return post.length <= POST_LIMIT ? post : splitThread(post);
 }
+
+export function withHashtags(post, hashtags = []) {
+  if (!hashtags.length) return post;
+
+  const tagLine = hashtags.slice(0, 4).join(" ");
+  const candidate = `${post}\n\n${tagLine}`;
+  return candidate.length <= POST_LIMIT ? candidate : post;
+}

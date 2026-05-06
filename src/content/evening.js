@@ -1,4 +1,5 @@
 import { getTrendingGeopoliticsNews } from "../news/rss.js";
+import { pickRun } from "../utils/date.js";
 
 function inferImpact(title) {
   const lower = title.toLowerCase();
@@ -79,8 +80,14 @@ export async function buildEveningPost() {
   const story = await getTrendingGeopoliticsNews();
   const headline = cleanHeadline(story.title);
   const impact = inferImpact(headline);
+  const angle = pickRun([
+    "India lens: crude decides inflation mood.",
+    "Missing angle: INR and margins react fast.",
+    "Watch the second-order impact, not just the headline.",
+    "For India, oil risk is market risk."
+  ], "evening-angle");
 
-  const post = `This news can affect Indian investors:\n\n${headline}\n\nWhy it matters:\nOil risk can hit inflation, rupee and margins fast.\n\nMarket impact:\nWatch oil, INR, gold, airlines, paints.`;
+  const post = `This news can affect Indian investors:\n\n${headline}\n\nWhy it matters:\nOil risk can hit inflation, rupee and margins fast.\n\n${angle}`;
 
   return {
     slot: "evening",

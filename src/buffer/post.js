@@ -15,6 +15,21 @@ function toPublicImageUrl(imagePath) {
   return `${config.buffer.publicImageBaseUrl.replace(/\/$/, "")}/${relative}`;
 }
 
+function duplicateTextVariant(text, attempt = 1) {
+  const variants = [
+    "Market lens: the headline is only step one. The real move is in oil, INR, inflation and margins.",
+    "India angle: crude is the transmission belt. If oil stays hot, inflation and sector margins feel it first.",
+    "Investor lens: do not stop at the news. Track who pays if this risk lasts another month.",
+    "Second-order effect: markets price oil, currency and margins before the full story becomes obvious."
+  ];
+  const variant = variants[(Date.now() + attempt) % variants.length];
+  const firstLine = text.split(/\n+/).find(Boolean) || "Markets are watching this closely:";
+  const marker = new Date().toISOString().slice(11, 16);
+  const candidate = `${firstLine}\n\n${variant}\n\nSignal time: ${marker} UTC`;
+
+  return candidate.length <= 280 ? candidate : `${firstLine}\n\n${variant}`;
+}
+
 export async function postToBuffer(parts, imagePath) {
   assertPostingConfig();
 
@@ -64,13 +79,13 @@ export async function postToBuffer(parts, imagePath) {
       throw error;
     }
 
-    variables.text = `${variables.text}\n\nFresh angle: ${new Date().toISOString().slice(11, 16)} UTC`;
+    variables.text = duplicateTextVariant(variables.text, 1);
     data = await bufferRequest(query, variables);
   }
   const result = data.createPost;
 
   if (result.message && String(result.message).toLowerCase().includes("posted that one recently")) {
-    variables.text = `${variables.text}\n\nFresh angle: ${new Date().toISOString().slice(11, 16)} UTC`;
+    variables.text = duplicateTextVariant(parts[0], 2);
     const retryData = await bufferRequest(query, variables);
     const retryResult = retryData.createPost;
     if (retryResult.message) throw new Error(`Buffer rejected post: ${retryResult.message}`);

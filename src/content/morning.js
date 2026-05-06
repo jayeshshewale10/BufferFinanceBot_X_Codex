@@ -1,4 +1,4 @@
-import { pickDaily } from "../utils/date.js";
+import { pickDaily, pickRun } from "../utils/date.js";
 
 const hooks = [
   "Nobody tells you this about investing:",
@@ -24,6 +24,14 @@ const explanations = [
   "Your behavior compounds before your money does."
 ];
 
+const closers = [
+  "Save this before the next red day.",
+  "Your future self will thank your boring self.",
+  "The boring investor usually beats the busy one.",
+  "Do less. Hold better. Think longer.",
+  "Patience is a position too."
+];
+
 const hashtagSets = [
   ["#Investing", "#StockMarket", "#PersonalFinance", "#WealthCreation", "#MoneyMindset", "#LongTermInvesting"],
   ["#InvestingTips", "#FinancialFreedom", "#StockMarketIndia", "#Compounding", "#MutualFunds", "#Wealth"],
@@ -32,10 +40,11 @@ const hashtagSets = [
 
 export function buildMorningPost() {
   const hook = pickDaily(hooks, "morning-hook");
-  const insight = pickDaily(insights, "morning-insight");
-  const explanation = pickDaily(explanations, "morning-explanation");
+  const insight = pickRun(insights, "morning-insight");
+  const explanation = pickRun(explanations, "morning-explanation");
+  const closer = pickRun(closers, "morning-closer");
   const hashtags = pickDaily(hashtagSets, "morning-hashtags");
-  const post = `${hook}\n\n"${insight}"\n\n${explanation}`;
+  const post = `${hook}\n\n"${insight}"\n\n${explanation}\n\n${closer}`;
 
   return {
     slot: "morning",

@@ -85,6 +85,19 @@ Generate the daily high-visibility reply plan:
 .\scripts\reply-plan.ps1
 ```
 
+Generate replies based on a specific X post:
+
+```powershell
+# Copy the X post text first, then run:
+.\scripts\reply-to-post.ps1
+```
+
+Or pass the post text directly:
+
+```powershell
+.\scripts\reply-to-post.ps1 "Oil jumps after fresh Middle East tensions..."
+```
+
 Post manually:
 
 ```bash

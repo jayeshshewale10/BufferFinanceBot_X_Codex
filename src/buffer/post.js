@@ -56,8 +56,26 @@ export async function postToBuffer(parts, imagePath) {
     }
   `;
 
-  const data = await bufferRequest(query, variables);
+  let data;
+  try {
+    data = await bufferRequest(query, variables);
+  } catch (error) {
+    if (!String(error.message).toLowerCase().includes("posted that one recently")) {
+      throw error;
+    }
+
+    variables.text = `${variables.text}\n\nFresh angle: ${new Date().toISOString().slice(11, 16)} UTC`;
+    data = await bufferRequest(query, variables);
+  }
   const result = data.createPost;
+
+  if (result.message && String(result.message).toLowerCase().includes("posted that one recently")) {
+    variables.text = `${variables.text}\n\nFresh angle: ${new Date().toISOString().slice(11, 16)} UTC`;
+    const retryData = await bufferRequest(query, variables);
+    const retryResult = retryData.createPost;
+    if (retryResult.message) throw new Error(`Buffer rejected post: ${retryResult.message}`);
+    return { ...retryResult.post, imageUrl };
+  }
 
   if (result.message) {
     throw new Error(`Buffer rejected post: ${result.message}`);

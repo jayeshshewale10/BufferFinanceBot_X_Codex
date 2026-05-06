@@ -17,13 +17,13 @@ function toPublicImageUrl(imagePath) {
 
 function duplicateTextVariant(text, attempt = 1) {
   const variants = [
-    "Market lens: the headline is only step one. The real move is in oil, INR, inflation and margins.",
-    "India angle: crude is the transmission belt. If oil stays hot, inflation and sector margins feel it first.",
-    "Investor lens: do not stop at the news. Track who pays if this risk lasts another month.",
-    "Second-order effect: markets price oil, currency and margins before the full story becomes obvious."
+    "Different lens: the headline is only step one. The real move is in oil, INR, inflation and margins.",
+    "India angle today: crude is the transmission belt. If oil stays hot, inflation and sector margins feel it first.",
+    "Investor note today: do not stop at the news. Track who pays if this risk lasts another month.",
+    "Fresh market map: prices move first, explanations arrive later. Watch oil, currency and margins."
   ];
   const variant = variants[(Date.now() + attempt) % variants.length];
-  const firstLine = text.split(/\n+/).find(Boolean) || "Markets are watching this closely:";
+  const firstLine = attempt === 1 ? "Markets are watching this closely:" : "This can move your money:";
   const marker = new Date().toISOString().slice(11, 16);
   const candidate = `${firstLine}\n\n${variant}\n\nSignal time: ${marker} UTC`;
 

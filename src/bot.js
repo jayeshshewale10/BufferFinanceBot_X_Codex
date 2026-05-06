@@ -7,7 +7,7 @@ import { buildViralReplies } from "./content/replies.js";
 import { renderImage } from "./images/renderImage.js";
 import { postToBuffer } from "./buffer/post.js";
 import { istDateKey } from "./utils/date.js";
-import { splitThread, withHashtags } from "./utils/text.js";
+import { splitThread, withHashtags, withUniqueManualLine } from "./utils/text.js";
 
 const root = process.cwd();
 const slot = process.argv[2] || "all";
@@ -28,7 +28,10 @@ async function runOne(builder, filename) {
   const imagePath = config.fromPreview
     ? payload.imagePath
     : await renderImage(payload.image, outDir, filename);
-  const postText = withHashtags(payload.post, payload.hashtags);
+  const uniquePost = config.forceUniquePost
+    ? withUniqueManualLine(payload.post, payload.slot, config.postVariationSeed)
+    : payload.post;
+  const postText = withHashtags(uniquePost, payload.hashtags);
   const parts = splitThread(postText);
   const preview = {
     ...payload,

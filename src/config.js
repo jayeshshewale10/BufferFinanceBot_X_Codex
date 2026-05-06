@@ -11,6 +11,8 @@ function envValue(name) {
 export const config = {
   dryRun: process.argv.includes("--dry-run") || process.env.DRY_RUN === "true",
   fromPreview: process.argv.includes("--from-preview"),
+  forceUniquePost: process.env.FORCE_UNIQUE_POST === "true",
+  postVariationSeed: envValue("POST_VARIATION_SEED") || String(Date.now()),
   buffer: {
     apiKey: envValue("BUFFER_API_KEY"),
     channelId: envValue("BUFFER_CHANNEL_ID"),

@@ -47,6 +47,8 @@ jobs:
         run: node src/bot.js "${{ steps.slot.outputs.slot }}" --dry-run
         env:
           DRY_RUN: "true"
+          FORCE_UNIQUE_POST: ${{ github.event_name == 'workflow_dispatch' && 'true' || 'false' }}
+          POST_VARIATION_SEED: ${{ github.run_id }}
 
       - name: Publish generated images to repo
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -61,3 +63,5 @@ jobs:
           BUFFER_CHANNEL_ID: ${{ secrets.BUFFER_CHANNEL_ID }}
           BUFFER_PUBLIC_IMAGE_BASE_URL: ${{ secrets.BUFFER_PUBLIC_IMAGE_BASE_URL }}
           DRY_RUN: "false"
+          FORCE_UNIQUE_POST: ${{ github.event_name == 'workflow_dispatch' && 'true' || 'false' }}
+          POST_VARIATION_SEED: ${{ github.run_id }}

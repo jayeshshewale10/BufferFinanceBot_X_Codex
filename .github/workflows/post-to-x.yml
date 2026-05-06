@@ -1,0 +1,63 @@
+name: Post to X
+
+on:
+  schedule:
+    - cron: "30 3 * * *"
+    - cron: "30 12 * * *"
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: "Which post to run"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - morning
+          - evening
+          - all
+
+permissions:
+  contents: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - run: npm install
+
+      - name: Choose slot
+        id: slot
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "slot=${{ inputs.slot }}" >> "$GITHUB_OUTPUT"
+          elif [ "$(date -u +%H:%M)" = "03:30" ]; then
+            echo "slot=morning" >> "$GITHUB_OUTPUT"
+          else
+            echo "slot=evening" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Generate assets and preview
+        run: node src/bot.js "${{ steps.slot.outputs.slot }}" --dry-run
+        env:
+          DRY_RUN: "true"
+
+      - name: Publish generated images to repo
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: add generated social assets"
+          file_pattern: "public/generated/**"
+
+      - name: Post through Buffer
+        run: node src/bot.js "${{ steps.slot.outputs.slot }}" --from-preview
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_CHANNEL_ID: ${{ secrets.BUFFER_CHANNEL_ID }}
+          BUFFER_PUBLIC_IMAGE_BASE_URL: ${{ secrets.BUFFER_PUBLIC_IMAGE_BASE_URL }}
+          DRY_RUN: "false"

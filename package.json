@@ -1,0 +1,22 @@
+{
+  "name": "x-finance-geopolitics-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Daily X bot for viral personal finance, investing, and geopolitics market-impact posts.",
+  "scripts": {
+    "morning": "node src/bot.js morning",
+    "evening": "node src/bot.js evening",
+    "all": "node src/bot.js all",
+    "buffer:channels": "node src/buffer/listChannels.js",
+    "dry:morning": "node src/bot.js morning --dry-run",
+    "dry:evening": "node src/bot.js evening --dry-run",
+    "dry:all": "node src/bot.js all --dry-run"
+  },
+  "dependencies": {
+    "sharp": "^0.33.5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

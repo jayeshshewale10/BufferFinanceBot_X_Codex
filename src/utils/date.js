@@ -25,7 +25,8 @@ export function pickDaily(items, salt = "") {
 
 export function pickRun(items, salt = "") {
   const bucket = Math.floor(Date.now() / (1000 * 60 * 15));
-  const key = `${istDateKey()}-${bucket}-${salt}`;
+  const seed = process.env.POST_VARIATION_SEED || "";
+  const key = `${istDateKey()}-${bucket}-${seed}-${salt}`;
   const total = [...key].reduce((sum, char) => sum + char.charCodeAt(0), 0);
   return items[total % items.length];
 }

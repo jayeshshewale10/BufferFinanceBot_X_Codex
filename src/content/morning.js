@@ -39,11 +39,11 @@ const hashtagSets = [
 ];
 
 export function buildMorningPost() {
-  const hook = pickDaily(hooks, "morning-hook");
+  const hook = pickRun(hooks, "morning-hook");
   const insight = pickRun(insights, "morning-insight");
   const explanation = pickRun(explanations, "morning-explanation");
   const closer = pickRun(closers, "morning-closer");
-  const hashtags = pickDaily(hashtagSets, "morning-hashtags");
+  const hashtags = pickRun(hashtagSets, "morning-hashtags");
   const post = `${hook}\n\n"${insight}"\n\n${explanation}\n\n${closer}`;
 
   return {

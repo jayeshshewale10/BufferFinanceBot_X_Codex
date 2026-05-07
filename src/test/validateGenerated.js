@@ -19,12 +19,13 @@ function latestDir() {
 
 function validateSlot(dir, slot) {
   const jsonPath = path.join(dir, `${slot}.json`);
-  const pngPath = path.join(dir, `${slot}.png`);
 
   if (!fs.existsSync(jsonPath)) throw new Error(`Missing ${slot}.json`);
-  if (!fs.existsSync(pngPath)) throw new Error(`Missing ${slot}.png`);
 
   const payload = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  const pngPath = payload.imagePath || path.join(dir, `${slot}.png`);
+
+  if (!fs.existsSync(pngPath)) throw new Error(`Missing ${slot} image at ${pngPath}`);
   const pngSize = fs.statSync(pngPath).size;
 
   if (pngSize < 10_000) throw new Error(`${slot}.png looks too small: ${pngSize} bytes`);

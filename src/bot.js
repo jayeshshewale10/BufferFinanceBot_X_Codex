@@ -12,6 +12,18 @@ import { splitThread, withHashtags, withUniqueManualLine } from "./utils/text.js
 const root = process.cwd();
 const slot = process.argv[2] || "all";
 
+function safeSeed() {
+  return String(config.postVariationSeed || Date.now())
+    .replace(/[^a-zA-Z0-9_-]/g, "")
+    .slice(0, 32);
+}
+
+function runFilename(filename, payloadSlot) {
+  const extension = path.extname(filename);
+  const base = path.basename(filename, extension);
+  return `${base}-${safeSeed() || payloadSlot}${extension}`;
+}
+
 async function savePreview(payload, outDir) {
   await fs.mkdir(outDir, { recursive: true });
   const previewPath = path.join(outDir, `${payload.slot}.json`);
@@ -27,7 +39,7 @@ async function runOne(builder, filename) {
     : await builder();
   const imagePath = config.fromPreview
     ? payload.imagePath
-    : await renderImage(payload.image, outDir, filename);
+    : await renderImage(payload.image, outDir, runFilename(filename, payload.slot));
   const uniquePost = config.forceUniquePost
     ? withUniqueManualLine(payload.post, payload.slot, config.postVariationSeed)
     : payload.post;

@@ -1,11 +1,11 @@
 {
   "slot": "evening",
-  "post": "This news can affect Indian investors:\n\nStock market today: Gift Nifty hints weak start; US-Iran war, tech stocks selloff to...\n\nWhy it matters:\nOil risk can hit inflation, rupee and margins fast.\n\nIndia lens: crude decides inflation mood.",
-  "source": "https://news.google.com/rss/articles/CBMikgJBVV95cUxQMDZKZEp2WHJyMlJCZWhlWUI4MFJibWVPa2hhU1JpdUdZeHRiZTN2enFYbU5mVjNIZHYwZVJmTV9ZbWNKRTZpQnlIUDNfemNQLWVwSFE2QlFRaDVtUGFwbVpXUnZxRDJJdVkyYzFUZGZvbWo3Y0ZTcUR5bGRRSC1MZHdtV0FfTHFRYWFmMnpZM3YwYWQ0TXB5bEplczRWTmlLREFac2Z6SWNjNXlTbTliUk50VkdaNFkybU5BZVNiY29FUFNxUkRKbl9LQ1FIM1JKaVNPR2NyTnFORk51RmhObHBYUVVlN0JINTZ4QmF5bG1kNmlCNHFpbF9sQVFydXFDRm5qRUdvaVpBamJ2YlROVm9R0gGXAkFVX3lxTE5tRVhidVJjQzZaTHNUdVlvbXVVLUFDS0ZWMWZSNGZrVHZNckZ0bDZybW5NeUI2bkxGSmo3YTVDTEJpN1ZFQWtUM1JXQ2o4LWlSRUhJRUtWYlgwSTljRUQwV0Jod3ZrQXRqd2pld2pxMWNPZFBBaS1fR0tPa1hZOE55bEN4enRFOTNweVBTbEVjZ1VwbmNOcVAzNGVfQ09zUzFuVWUwZlFIRDVWcTNvc00xak9WTEhRYUl1eG5zMjVvTjZ0ZDQ4TkdRMVdvSWE0ektmSV9ZckYwcDBsS21yWGE3ZlNfZVFmR3FidUZVTEhuQTJZcDZkYkdDSV9CdnFndTc5QXZCUFVURGlJX2ZjNkFSS2tXdzVvNA?oc=5",
+  "post": "This news can affect Indian investors:\n\nEU proposes fresh sanctions over Ukraine war, targeting firms with links to Russian a...\n\nWhy it matters:\nOil risk can hit inflation, rupee and margins fast.\n\nMissing angle: INR and margins react fast.",
+  "source": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPNm82eXo4WXpzN2R4Xy1PN2U0NFo0UEktQWJYbmhNWFpQa21PTlE5NDFTZEZvZ043Wl81OWtrT2gxNUZIRHU2el95WVpDSG9DZjF2Z1FBSGpKLTgwSW90cGI1TUlSaWJtSDFOM1o5bFBTc2dfb3BLTk9zMUlWdUxYUXFZYzlQTzNNb0l5WUs5ckpVWFhIQXBlVWsyeUk1VW1ndmRWdjZ0TUhxRUpRQVhDVXhLMGVEanc3WDV1Z0h4bWFtSlFzOGREMmpFcFJ1dVJiYnpyQnZ4R01lTmZFRmtLQ1BHbVRQR1JvUmJRYTJmaElxalF4TFlDNXJZM2hudjJZ?oc=5",
   "image": {
-    "title": "GLOBAL OIL SHOCK",
-    "topic": "Stock market today: Gift Nifty hints weak start; US-Iran war, tech stocks selloff to...",
-    "subtext": "War Risk -> Oil Up -> Inflation Up -> Markets Volatile",
+    "title": "WAR RISK RISES",
+    "topic": "EU proposes fresh sanctions over Ukraine war, targeting firms with links to Russian a...",
+    "subtext": "Conflict -> Commodities Move -> INR Reacts -> Stocks Volatile",
     "bullets": [
       "WAR RISK",
       "OIL UP",
@@ -23,9 +23,9 @@
     "#Nifty"
   ],
   "thread": [
-    "This news can affect Indian investors:\n\nStock market today: Gift Nifty hints weak start; US-Iran war, tech stocks selloff to...\n\nWhy it matters:\nOil risk can hit inflation, rupee and margins fast.\n\nIndia lens: crude decides inflation mood."
+    "This news can affect Indian investors:\n\nEU proposes fresh sanctions over Ukraine war, targeting firms with links to Russian a...\n\nWhy it matters:\nOil risk can hit inflation, rupee and margins fast.\n\nMissing angle: INR and margins react fast."
   ],
-  "imagePath": "/home/runner/work/BufferFinanceBot_X_Codex/BufferFinanceBot_X_Codex/public/generated/2026-06-10/evening-27261647032.png",
+  "imagePath": "/home/runner/work/BufferFinanceBot_X_Codex/BufferFinanceBot_X_Codex/public/generated/2026-06-10/evening-27289998006.png",
   "viralReplies": [
     "This is not just geopolitics.\nIt is oil, INR, margins and market mood in one headline.",
     "Most people ask, 'Is this good or bad?'\nInvestors should ask, 'Who benefits if this lasts?'",
